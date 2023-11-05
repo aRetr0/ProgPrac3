@@ -1,6 +1,9 @@
 public class Equip {
     private String nomEquip;
     private int puntuacio = -1;
+    public Equip (String nomEquip){
+        this.nomEquip = nomEquip;
+    }
 
     public void setPuntuacio(int novapuntuacio) {this.puntuacio = novapuntuacio;}
 
