@@ -11,7 +11,7 @@ public class Main {
             while ((line = reader.readLine()) != null) {
                 String[] equips = line.split(";");
                 for (String equip : equips) {
-                    arbre = new Arbre(new Equip(equip),null,null);
+                    arbre = new Arbre(new Equip(equip), null, null);
                 }
             }
             reader.close();

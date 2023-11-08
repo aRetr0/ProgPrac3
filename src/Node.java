@@ -1,13 +1,16 @@
 public class Node {
     Equip inf;
     Node esq, dreta;
-    Node(){
+
+    Node() {
         this(null);
     }
-    Node(Equip equip){
-        this(equip,null,null);
+
+    Node(Equip equip) {
+        this(equip, null, null);
     }
-    Node (Equip equip, Node node, Node node1){
+
+    Node(Equip equip, Node node, Node node1) {
         this.inf = equip;
         this.esq = node;
         this.dreta = node1;
