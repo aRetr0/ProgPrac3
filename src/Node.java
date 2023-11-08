@@ -5,7 +5,6 @@ public class Node {
     Node() {
         this(null);
     }
-
     Node(Equip equip) {
         this(equip, null, null);
     }
