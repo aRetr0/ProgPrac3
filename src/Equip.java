@@ -7,7 +7,7 @@ public class Equip {
 
     public Equip(String nomEquip) {this.nomEquip = nomEquip;}
 
-    public Equip(String nomEquip, int puntuacio){
+    public Equip(String nomEquip, int puntuacio) {
         this.nomEquip = nomEquip;
         this.puntuacio = puntuacio;
     }
@@ -19,7 +19,7 @@ public class Equip {
     public String toString() {return ("Equip: " + this.nomEquip + " Puntuacio: " + this.puntuacio);}
 
     public String toSave() {
-        return(this.nomEquip + "; " + this.puntuacio);
+        return (this.nomEquip + "; " + this.puntuacio);
     }
 
     public String dades() {return (this.nomEquip + ";" + this.puntuacio);}

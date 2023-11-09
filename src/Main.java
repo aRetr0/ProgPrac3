@@ -12,52 +12,58 @@ public class Main {
         do {
             System.out.println("Si vols crear amb arxiu text puja el arxiu a la mateixa carpeta que el java i introdueix el nombre 1, per contrabanda introdueix el nombre 2: ");
             decisio = Keyboard.readInt();
-        } while(decisio != 1 && decisio != 2);
-        if (decisio==1){
+        } while (decisio != 1 && decisio != 2);
+        if (decisio == 1) {
             try {
                 String nomTorneig;
                 File file = new File("test.txt");
+                if (!file.exists()) {
+                    System.out.println("El arxiu no existeix, assegura't de que esta a la mateixa carpeta que el java i que es diu test.txt");
+                    System.out.println("Tancant programa...");
+                    return;
+                }
+
                 nomTorneig = file.getName();
                 BufferedReader reader = new BufferedReader(new FileReader("test.txt"));
                 String line;
-                String [] equips = new String[0];
-                String []puntsTemp =new String[0];
+                String[] equips = new String[0];
+                String[] puntsTemp = new String[0];
 
                 while ((line = reader.readLine()) != null) {
                     equips = line.split(";");
                     puntsTemp = line.split(";");
                 }
-                int [] punts = new int [equips.length];
-                for (int i=0; i<puntsTemp.length; i++){
+                int[] punts = new int[equips.length];
+                for (int i = 0; i < puntsTemp.length; i++) {
                     punts[i] = Integer.parseInt(puntsTemp[i]);
                 }
                 reader.close();
-                Arbre arbre = new Arbre(equips,punts);
+                Arbre arbre = new Arbre(equips, punts);
                 arbre.funcionaElJoc();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             int i = 0;
-            do{
+            do {
                 System.out.print("Quants equips vols introduir? ");
                 i = Keyboard.readInt();
-            } while(i % 2 != 0 || i == 0);
-            String [] equips = new String[i];
-            int [] punts = new int[i];
+            } while (i % 2 != 0 || i == 0);
+            String[] equips = new String[i];
+            int[] punts = new int[i];
             int cont = 0;
-            while (cont<i){
+            while (cont < i) {
                 System.out.print("Introdueix el nom del equip " + (cont + 1) + ": ");
                 String nomEquip = Keyboard.readString();
                 System.out.println("Introdueix la puntuacio del equip: " + (cont + 1));
                 int puntuacio = Keyboard.readInt();
-                punts[i] = puntuacio;
+                punts[cont] = puntuacio;
                 equips[cont] = nomEquip;
                 cont++;
             }
             System.out.print("Equips guardats, introdueix el nom del torneig: ");
             String nomTorneig = Keyboard.readString();
-            Arbre arbre = new Arbre(equips,punts);
+            Arbre arbre = new Arbre(equips, punts);
             arbre.funcionaElJoc();
         }
     }
