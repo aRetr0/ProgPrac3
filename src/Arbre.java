@@ -6,13 +6,13 @@ public class Arbre {
 
     public Arbre() {this.arrel = null;}
 
-    public Arbre(String[] equips){
+    public Arbre(String[] equips, int[] puntuacio){
         this.nombreEquips = equips.length;
         this.nombreRondes = (int) ((int)Math.log(this.nombreEquips)/Math.log(2));
         this.profunditat = this.nombreRondes + 1;
         this.arrel = new Node();
-        for (String equip : equips) {
-            inserir(arrel, new Equip(equip), this.profunditat);
+        for (int i=0; i<equips.length && i<puntuacio.length; i++) {
+            inserir(arrel, new Equip(equips[i],puntuacio[i]), this.profunditat);
         }
     }
     private boolean inserir(Node node, Equip equip, int profunditat) {
@@ -53,7 +53,16 @@ public class Arbre {
         mostrar(node.esq, profunditat + 1);
         mostrar(node.dreta, profunditat + 1);
     }
+    public void funcionaElJoc(){
 
+    }
+    public void funcionaelJoc(){
+        for (int i=1; i<=this.nombreRondes;i++){
+            System.out.println("Ronda: " + i + ", així esta el taulell del torneig");
+            this.mostrar(this.arrel,this.profunditat);
+
+        }
+    }
     public int getProfunditat() {return profunditat;}
 
     public int getNombreEquips() {return nombreEquips;}
