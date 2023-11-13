@@ -9,7 +9,7 @@ public class Node{
         this.dreta = node1;
     }
 
-    Node compareTo(Node node){
+    public Node compareTo(Node node){
         if (this.inf.getPuntuacio() > node.inf.getPuntuacio()) return this;
         return node;
     }

@@ -38,7 +38,7 @@ public class Main {
                 }
                 reader.close();
                 Arbre arbre = new Arbre(equips, punts);
-                arbre.funcionaElJoc();
+                arbre.funcionaElJoc(1);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,6 +69,18 @@ public class Main {
             System.out.print("Equips guardats, introdueix el nom del torneig: ");
             String nomTorneig = Keyboard.readString();
             Arbre arbre = new Arbre(equips, punts);
+            arbre.funcionaElJoc(1);
+        }
+    }
+    private void funcionaElJoc(int rondaActual,Arbre arbre) {
+        if (rondaActual < arbre.getNombreRondes()) {
+            System.out.println("Ronda: " + rondaActual + ", així esta el taulell del torneig");
+            arbre.mostrar(arbre.getArrel(), arbre.getProfunditat());
+            System.out.println("---------------------------------------------");
+            arbre.partit(arbre.getArrel());
+            funcionaElJoc(rondaActual + 1,arbre);
+        } else {
+            System.out.println(arbre.getNombreRondes());
             arbre.funcionaElJoc();
         }
     }

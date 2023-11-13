@@ -25,8 +25,5 @@ public class Equip {
     }
 
     public String dades() {return (this.nomEquip + ";" + this.puntuacio);}
-
-    public int compareTo(Equip e) {return Integer.compare(this.puntuacio, e.puntuacio);}
-
     public String getNomEquip() {return this.nomEquip;}
 }
