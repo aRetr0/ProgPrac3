@@ -13,6 +13,7 @@ public class Equip {
     }
 
     public int getPuntuacio() {return puntuacio;}
+
     public void setPuntuacio(int novapuntuacio) {this.puntuacio = novapuntuacio;}
 
     public boolean haJugat() {return this.puntuacio != -1;}
@@ -26,4 +27,6 @@ public class Equip {
     public String dades() {return (this.nomEquip + ";" + this.puntuacio);}
 
     public int compareTo(Equip e) {return Integer.compare(this.puntuacio, e.puntuacio);}
+
+    public String getNomEquip() {return this.nomEquip;}
 }

@@ -7,6 +7,9 @@ public class Arbre {
     Node arrel;
     private static Node tempDreta;
     private static Node tempEsquerre;
+    private static Node nodePareDreta;
+    private static Node nodePareEsquerre;
+
     public Arbre() {this.arrel = null;}
 
     public Arbre(String[] equips, int[] puntuacio) {
@@ -18,6 +21,7 @@ public class Arbre {
             inserir(arrel, new Equip(equips[i], puntuacio[i]), this.profunditat);
         }
     }
+
     private boolean inserir(Node node, Equip equip, int profunditat) {
         if (profunditat == 0) {
             if (node.inf == null) {
@@ -57,27 +61,51 @@ public class Arbre {
         mostrar(node.esq, profunditat + 1);
         mostrar(node.dreta, profunditat + 1);
     }
-    public void funcionaElJoc(){
-        for (int i=1; i<=this.nombreRondes; i++){
-            System.out.println("Ronda: " + i + ", així esta el taulell del torneig");
+
+    public void funcionaElJoc(int rondaActual) {
+        if (rondaActual == this.nombreRondes) {
+            System.out.println("Ronda: " + rondaActual + ", així esta el taulell del torneig");
             this.mostrar(this.arrel, this.profunditat);
-            System.out.println("------------------------------");
+            System.out.println("---------------------------------------------");
             tempEsquerre = recursivitatEsquerre(this.arrel);
             tempDreta = recursivitatDreta(this.arrel);
+            if(tempEsquerre.inf.compareTo(tempDreta.inf) == 1){
+                nodePareEsquerre = new Node (new Equip(tempEsquerre.inf.getNomEquip()));
+            } else{
+                nodePareEsquerre = new Node (new Equip(tempDreta.inf.getNomEquip()));
+            }
+            funcionaElJoc(rondaActual + 1);
+        }
+        else{
+            funcionaElJoc();
         }
     }
-    private Node recursivitatEsquerre(Node node){
-        if (node.inf == null) recursivitatEsquerre(node.esq);
-        else return node;
-        return null; // no arriba mai
+
+    public void funcionaElJoc(){
+        System.out.println("Última ronda: ");
     }
-    private Node recursivitatDreta(Node node){
-        if (node.inf == null) recursivitatDreta(node.dreta);
-        else return node;
-        return null; // no arriba mai
+
+    private Node recursivitatEsquerre(Node node) {
+        if (node.inf == null) {
+            nodePareEsquerre = node;
+            return recursivitatEsquerre(node.esq);
+        } else {
+            return node;
+        }
+    }
+
+    private Node recursivitatDreta(Node node) {
+        if (node.inf == null) {
+            nodePareDreta = node;
+            return recursivitatDreta(node.dreta);
+        } else {
+            return node;
+        }
     }
 
     public int getProfunditat() {return profunditat;}
+
     public int getNombreEquips() {return nombreEquips;}
+
     public int getNombreRondes() {return nombreRondes;}
 }

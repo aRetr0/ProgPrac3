@@ -12,7 +12,7 @@ public class Main {
         do {
             System.out.println("Si vols crear amb arxiu text puja el arxiu a la mateixa carpeta que el java i introdueix el nombre 1, per contrabanda introdueix el nombre 2: ");
             decisio = Keyboard.readInt();
-        } while (decisio != 1 && decisio != 2);
+        } while (decisio != 1 && decisio != 2 && decisio != 9);
         if (decisio == 1) {
             try {
                 String nomTorneig;
@@ -42,6 +42,12 @@ public class Main {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        } else if (decisio == 9) {
+            System.out.println("Creant equips automaticament...");
+            int[] punts = {1, 2, 3, 4};
+            String[] nomEquips = {"Eq 1", "Eq 2", "Eq 3", "Eq 4"};
+            Arbre arbre = new Arbre(nomEquips, punts);
+            arbre.funcionaElJoc(0);
         } else {
             int i = 0;
             do {
