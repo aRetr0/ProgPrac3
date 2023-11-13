@@ -12,6 +12,7 @@ public class Equip {
         this.puntuacio = puntuacio;
     }
 
+    public int getPuntuacio() {return puntuacio;}
     public void setPuntuacio(int novapuntuacio) {this.puntuacio = novapuntuacio;}
 
     public boolean haJugat() {return this.puntuacio != -1;}

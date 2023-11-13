@@ -22,7 +22,6 @@ public class Main {
                     System.out.println("Tancant programa...");
                     return;
                 }
-
                 nomTorneig = file.getName();
                 BufferedReader reader = new BufferedReader(new FileReader("test.txt"));
                 String line;

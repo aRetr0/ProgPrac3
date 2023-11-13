@@ -5,7 +5,8 @@ public class Arbre {
     private int nombreEquips;
     private int nombreRondes;
     Node arrel;
-
+    private static Node tempDreta;
+    private static Node tempEsquerre;
     public Arbre() {this.arrel = null;}
 
     public Arbre(String[] equips, int[] puntuacio) {
@@ -17,7 +18,6 @@ public class Arbre {
             inserir(arrel, new Equip(equips[i], puntuacio[i]), this.profunditat);
         }
     }
-
     private boolean inserir(Node node, Equip equip, int profunditat) {
         if (profunditat == 0) {
             if (node.inf == null) {
@@ -57,24 +57,27 @@ public class Arbre {
         mostrar(node.esq, profunditat + 1);
         mostrar(node.dreta, profunditat + 1);
     }
-
-    public void funcionaElJoc() {
-        System.out.println("Última ronda. Així esta el taulell del torneig");
-        this.mostrar(this.arrel, this.profunditat);
-    }
-
-    public void funcionaElJoc(int ronda) {
-        if (ronda == this.nombreRondes) {
-            this.funcionaElJoc();
-        } else {
-            System.out.println("Ronda: " + ronda + ", així esta el taulell del torneig");
+    public void funcionaElJoc(){
+        for (int i=1; i<=this.nombreRondes; i++){
+            System.out.println("Ronda: " + i + ", així esta el taulell del torneig");
             this.mostrar(this.arrel, this.profunditat);
+            System.out.println("------------------------------");
+            tempEsquerre = recursivitatEsquerre(this.arrel);
+            tempDreta = recursivitatDreta(this.arrel);
         }
+    }
+    private Node recursivitatEsquerre(Node node){
+        if (node.inf == null) recursivitatEsquerre(node.esq);
+        else return node;
+        return null; // no arriba mai
+    }
+    private Node recursivitatDreta(Node node){
+        if (node.inf == null) recursivitatDreta(node.dreta);
+        else return node;
+        return null; // no arriba mai
     }
 
     public int getProfunditat() {return profunditat;}
-
     public int getNombreEquips() {return nombreEquips;}
-
     public int getNombreRondes() {return nombreRondes;}
 }
