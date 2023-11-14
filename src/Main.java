@@ -27,7 +27,6 @@ public class Main {
                 String line;
                 String[] equips = new String[0];
                 String[] puntsTemp = new String[0];
-
                 while ((line = reader.readLine()) != null) {
                     equips = line.split(";");
                     puntsTemp = line.split(";");
@@ -37,17 +36,10 @@ public class Main {
                     punts[i] = Integer.parseInt(puntsTemp[i]);
                 }
                 reader.close();
-                Arbre arbre = new Arbre(equips, punts);
-                arbre.funcionaElJoc(1);
+                funcionaElJoc(1,new Arbre(equips, punts));
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else if (decisio == 9) {
-            System.out.println("Creant equips automaticament...");
-            int[] punts = {1, 2, 3, 4};
-            String[] nomEquips = {"Eq 1", "Eq 2", "Eq 3", "Eq 4"};
-            Arbre arbre = new Arbre(nomEquips, punts);
-            arbre.funcionaElJoc(0);
         } else {
             int i = 0;
             do {
@@ -68,20 +60,24 @@ public class Main {
             }
             System.out.print("Equips guardats, introdueix el nom del torneig: ");
             String nomTorneig = Keyboard.readString();
-            Arbre arbre = new Arbre(equips, punts);
-            arbre.funcionaElJoc(1);
+            funcionaElJoc(1, new Arbre(equips,punts));
         }
     }
-    private void funcionaElJoc(int rondaActual,Arbre arbre) {
-        if (rondaActual < arbre.getNombreRondes()) {
+    private static void funcionaElJoc(int rondaActual,Arbre arbre) {
+        if(arbre.getNombreRondes()==1){
+            System.out.println("Ultima ronda! Així esta el taulell: ");
+            arbre.mostrar(arbre.getArrel(), arbre.getProfunditat());
+            System.out.println("---------------------------------------------");
+            arbre.partit(arbre.getArrel());
+            String[] temp = arbre.getEquips();
+            int[] tempPunts = arbre.getPuntuacio();
+            System.out.println("I aquest es el equip guanyador!!!! " + temp[0] + " amb aquesta puntuació: " + tempPunts[0]);
+        }else {
             System.out.println("Ronda: " + rondaActual + ", així esta el taulell del torneig");
             arbre.mostrar(arbre.getArrel(), arbre.getProfunditat());
             System.out.println("---------------------------------------------");
             arbre.partit(arbre.getArrel());
-            funcionaElJoc(rondaActual + 1,arbre);
-        } else {
-            System.out.println(arbre.getNombreRondes());
-            arbre.funcionaElJoc();
+            funcionaElJoc(rondaActual + 1, new Arbre(arbre.getEquips(), arbre.getPuntuacio()));
         }
     }
 }
